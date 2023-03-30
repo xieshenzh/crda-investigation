@@ -1,73 +1,75 @@
 {
   "_api_doc_": "https://snyk.docs.apiary.io/#reference/test/dep-graph/test-dep-graph",
-  "ok": false,
-  "packageManager": "maven",
-  "issuesData": {
-    "SNYK-JAVA-ORGSPRINGFRAMEWORKSECURITY-30173": {
-      "id": "SNYK-JAVA-ORGSPRINGFRAMEWORKSECURITY-30173",
-      "title": "Access Restriction Bypass",
-      "CVSSv3": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-      "credit": [
-        "David Ohsie"
-      ],
-      "semver": {
-        "vulnerable": [
-          "[3.2.0,3.2.5.RELEASE)",
-          "[3.1.0,3.1.7.RELEASE)"
-        ]
-      },
-      "fixedIn": [
-        "3.2.5.RELEASE",
-        "3.1.7.RELEASE"
-      ],
-      "insights": {
-        "triageAdvice": null
-      },
-      "language": "java",
-      "severity": "critical",
-      "cvssScore": 9.8,
-      "moduleName": "org.springframework.security:spring-security-cas",
-      "cvssDetails": [
-        {
-          "assigner": "NVD",
-          "severity": "critical",
-          "cvssV3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-          "cvssV3BaseScore": 9.8,
-          "modificationTime": "2022-01-03T17:36:56.229472Z"
+  "response_body": {
+    "ok": false,
+    "packageManager": "maven",
+    "issuesData": {
+      "SNYK-JAVA-ORGSPRINGFRAMEWORKSECURITY-30173": {
+        "id": "SNYK-JAVA-ORGSPRINGFRAMEWORKSECURITY-30173",
+        "title": "Access Restriction Bypass",
+        "CVSSv3": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "credit": [
+          "David Ohsie"
+        ],
+        "semver": {
+          "vulnerable": [
+            "[3.2.0,3.2.5.RELEASE)",
+            "[3.1.0,3.1.7.RELEASE)"
+          ]
+        },
+        "fixedIn": [
+          "3.2.5.RELEASE",
+          "3.1.7.RELEASE"
+        ],
+        "insights": {
+          "triageAdvice": null
+        },
+        "language": "java",
+        "severity": "critical",
+        "cvssScore": 9.8,
+        "moduleName": "org.springframework.security:spring-security-cas",
+        "cvssDetails": [
+          {
+            "assigner": "NVD",
+            "severity": "critical",
+            "cvssV3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+            "cvssV3BaseScore": 9.8,
+            "modificationTime": "2022-01-03T17:36:56.229472Z"
+          }
+        ],
+        "description": "## Overview\r\n[`org.springframework.security:spring-security-cas`](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22spring-security-cas%22)\r\nWhen using Spring Security's CAS Proxy ticket authentication, a malicious CAS Service could trick another CAS Service into authenticating a proxy ticket that was not associated. A remote attacker could use this flaw to bypass any access control restrictions on which CAS services can authenticate to one another.\r\n\r\n## References\r\n\r\n- [Pivotal Security](http://www.gopivotal.com/security/cve-2014-3527)\r\n- [Redhat Bugzilla](https://bugzilla.redhat.com/CVE-2014-3527)\r\n- [Spring Blog](https://spring.io/blog/2014/08/15/cve-2014-3527-fixed-in-spring-security-3-2-5-and-3-1-7)\r\n- [Jira Issue](https://jira.spring.io/browse/SEC-2688)",
+        "identifiers": {
+          "CVE": [
+            "CVE-2014-3527"
+          ],
+          "CWE": [
+            "CWE-284"
+          ],
+          "GHSA": [
+            "GHSA-wmv4-5w76-vp9g"
+          ]
+        },
+        "packageName": "org.springframework.security:spring-security-cas",
+        "proprietary": false,
+        "disclosureTime": "2016-12-25T16:51:52Z",
+        "packageManager": "maven",
+        "mavenModuleName": {
+          "groupId": "org.springframework.security",
+          "artifactId": "spring-security-cas"
         }
-      ],
-      "description": "## Overview\r\n[`org.springframework.security:spring-security-cas`](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22spring-security-cas%22)\r\nWhen using Spring Security's CAS Proxy ticket authentication, a malicious CAS Service could trick another CAS Service into authenticating a proxy ticket that was not associated. A remote attacker could use this flaw to bypass any access control restrictions on which CAS services can authenticate to one another.\r\n\r\n## References\r\n\r\n- [Pivotal Security](http://www.gopivotal.com/security/cve-2014-3527)\r\n- [Redhat Bugzilla](https://bugzilla.redhat.com/CVE-2014-3527)\r\n- [Spring Blog](https://spring.io/blog/2014/08/15/cve-2014-3527-fixed-in-spring-security-3-2-5-and-3-1-7)\r\n- [Jira Issue](https://jira.spring.io/browse/SEC-2688)",
-      "identifiers": {
-        "CVE": [
-          "CVE-2014-3527"
-        ],
-        "CWE": [
-          "CWE-284"
-        ],
-        "GHSA": [
-          "GHSA-wmv4-5w76-vp9g"
-        ]
-      },
-      "packageName": "org.springframework.security:spring-security-cas",
-      "proprietary": false,
-      "disclosureTime": "2016-12-25T16:51:52Z",
-      "packageManager": "maven",
-      "mavenModuleName": {
-        "groupId": "org.springframework.security",
-        "artifactId": "spring-security-cas"
       }
+    },
+    "issues": [
+      {
+        "pkgName": "org.springframework.security:spring-security-cas",
+        "pkgVersion": "3.1.0.RELEASE",
+        "issueId": "SNYK-JAVA-ORGSPRINGFRAMEWORKSECURITY-30173",
+        "fixInfo": {}
+      }
+    ],
+    "org": {
+      "id": "63884128-5f57-4752-b9c0-9d0882873bf4",
+      "name": "crda-engineering-dev"
     }
-  },
-  "issues": [
-    {
-      "pkgName": "org.springframework.security:spring-security-cas",
-      "pkgVersion": "3.1.0.RELEASE",
-      "issueId": "SNYK-JAVA-ORGSPRINGFRAMEWORKSECURITY-30173",
-      "fixInfo": {}
-    }
-  ],
-  "org": {
-    "id": "63884128-5f57-4752-b9c0-9d0882873bf4",
-    "name": "crda-engineering-dev"
   }
 }

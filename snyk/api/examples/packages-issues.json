@@ -1,3 +1,6 @@
 {
-  "_api_doc_": "https://apidocs.snyk.io/?version=2023-03-20~experimental#post-/orgs/-org_id-/packages/issues"
+  "_api_doc_": "https://apidocs.snyk.io/?version=2023-03-20~experimental#post-/orgs/-org_id-/packages/issues",
+  "response_body": {
+
+  }
 }
