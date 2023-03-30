@@ -1,0 +1,108 @@
+{
+  "_api_doc_": "https://apidocs.snyk.io/?version=2023-03-20%7Ebeta#get-/orgs/-org_id-/packages/-purl-/issues",
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": [
+    {
+      "id": "SNYK-JAVA-ORGSPRINGFRAMEWORKSECURITY-30173",
+      "type": "issue",
+      "attributes": {
+        "key": "SNYK-JAVA-ORGSPRINGFRAMEWORKSECURITY-30173",
+        "title": "Access Restriction Bypass",
+        "type": "package_vulnerability",
+        "created_at": "2016-12-25T16:51:52Z",
+        "updated_at": "2022-01-03T17:36:56.229472Z",
+        "description": "## Overview\r\n[`org.springframework.security:spring-security-cas`](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22spring-security-cas%22)\r\nWhen using Spring Security's CAS Proxy ticket authentication, a malicious CAS Service could trick another CAS Service into authenticating a proxy ticket that was not associated. A remote attacker could use this flaw to bypass any access control restrictions on which CAS services can authenticate to one another.\r\n\r\n## References\r\n\r\n- [Pivotal Security](http://www.gopivotal.com/security/cve-2014-3527)\r\n- [Redhat Bugzilla](https://bugzilla.redhat.com/CVE-2014-3527)\r\n- [Spring Blog](https://spring.io/blog/2014/08/15/cve-2014-3527-fixed-in-spring-security-3-2-5-and-3-1-7)\r\n- [Jira Issue](https://jira.spring.io/browse/SEC-2688)",
+        "problems": [
+          {
+            "id": "CVE-2014-3527",
+            "source": "CVE"
+          },
+          {
+            "id": "CWE-284",
+            "source": "CWE"
+          },
+          {
+            "id": "GHSA-wmv4-5w76-vp9g",
+            "source": "GHSA"
+          }
+        ],
+        "coordinates": [
+          {
+            "remedies": [
+              {
+                "type": "indeterminate",
+                "description": "Upgrade the package version to 3.2.5.RELEASE,3.1.7.RELEASE to fix this vulnerability",
+                "details": {
+                  "upgrade_package": "3.2.5.RELEASE,3.1.7.RELEASE"
+                }
+              }
+            ],
+            "representation": [
+              "[3.2.0,3.2.5.RELEASE)",
+              "[3.1.0,3.1.7.RELEASE)"
+            ]
+          }
+        ],
+        "severities": [
+          {
+            "source": "Snyk",
+            "level": "critical",
+            "score": 9.8,
+            "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+          },
+          {
+            "source": "NVD",
+            "level": "critical",
+            "score": 9.8,
+            "vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+          }
+        ],
+        "effective_severity_level": "critical",
+        "slots": {
+          "disclosure_time": "2016-12-25T16:51:52Z",
+          "exploit": "Not Defined",
+          "publication_time": "2016-12-25T16:51:52Z",
+          "references": [
+            {
+              "url": "https://github.com/spring-projects/spring-security/commit/2cb99f079152ac05cee5c90457c7feb3bb2de55",
+              "title": "GitHub Commit"
+            },
+            {
+              "url": "https://github.com/spring-projects/spring-security/commit/934937d9c1dc20c396b96c08310b72cfa627acb",
+              "title": "GitHub Commit"
+            },
+            {
+              "url": "https://jira.spring.io/browse/SEC-2688",
+              "title": "Jira Issue"
+            },
+            {
+              "url": "http://www.gopivotal.com/security/cve-2014-3527",
+              "title": "Pivotal Security"
+            },
+            {
+              "url": "https://bugzilla.redhat.com/CVE-2014-3527",
+              "title": "Redhat Bugzilla"
+            },
+            {
+              "url": "https://spring.io/blog/2014/08/15/cve-2014-3527-fixed-in-spring-security-3-2-5-and-3-1-7",
+              "title": "Spring Blog"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "links": {
+    "self": "/orgs/63884128-5f57-4752-b9c0-9d0882873bf4/packages/pkg%3Amaven%2Forg.springframework.security%2Fspring-security-cas%403.1.0.RELEASE/issues?version=2023-03-20%7Ebeta&limit=1000&offset=0"
+  },
+  "meta": {
+    "package": {
+      "name": "spring-security-cas",
+      "type": "maven",
+      "url": "pkg:maven/org.springframework.security/spring-security-cas@3.1.0.RELEASE",
+      "version": "3.1.0.RELEASE"
+    }
+  }
+}

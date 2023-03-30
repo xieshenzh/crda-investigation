@@ -1,0 +1,95 @@
+{
+  "_api_doc_": "https://snyk.docs.apiary.io/#reference/test/maven/test-for-issues-in-a-public-package-by-group-id,-artifact-id-and-version",
+  "ok": false,
+  "issues": {
+    "vulnerabilities": [
+      {
+        "id": "SNYK-JAVA-ORGSPRINGFRAMEWORKSECURITY-30173",
+        "url": "https://snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORKSECURITY-30173",
+        "title": "Access Restriction Bypass",
+        "type": "vuln",
+        "description": "## Overview\r\n[`org.springframework.security:spring-security-cas`](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22spring-security-cas%22)\r\nWhen using Spring Security's CAS Proxy ticket authentication, a malicious CAS Service could trick another CAS Service into authenticating a proxy ticket that was not associated. A remote attacker could use this flaw to bypass any access control restrictions on which CAS services can authenticate to one another.\r\n\r\n## References\r\n\r\n- [Pivotal Security](http://www.gopivotal.com/security/cve-2014-3527)\r\n- [Redhat Bugzilla](https://bugzilla.redhat.com/CVE-2014-3527)\r\n- [Spring Blog](https://spring.io/blog/2014/08/15/cve-2014-3527-fixed-in-spring-security-3-2-5-and-3-1-7)\r\n- [Jira Issue](https://jira.spring.io/browse/SEC-2688)",
+        "from": [
+          "org.springframework.security:spring-security-cas@3.1.0.RELEASE"
+        ],
+        "package": "org.springframework.security:spring-security-cas",
+        "version": "3.1.0.RELEASE",
+        "severity": "critical",
+        "exploitMaturity": "no-known-exploit",
+        "language": "java",
+        "packageManager": "maven",
+        "semver": {
+          "vulnerable": [
+            "[3.2.0,3.2.5.RELEASE)",
+            "[3.1.0,3.1.7.RELEASE)"
+          ]
+        },
+        "publicationTime": "2016-12-25T16:51:52Z",
+        "disclosureTime": "2016-12-25T16:51:52Z",
+        "isUpgradable": true,
+        "isPatchable": false,
+        "isPinnable": false,
+        "identifiers": {
+          "CVE": [
+            "CVE-2014-3527"
+          ],
+          "CWE": [
+            "CWE-284"
+          ],
+          "GHSA": [
+            "GHSA-wmv4-5w76-vp9g"
+          ]
+        },
+        "credit": [
+          "David Ohsie"
+        ],
+        "CVSSv3": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "cvssScore": 9.8,
+        "cvssDetails": [
+          {
+            "assigner": "NVD",
+            "severity": "critical",
+            "cvssV3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+            "cvssV3BaseScore": 9.8,
+            "modificationTime": "2022-01-03T17:36:56.229472Z"
+          }
+        ],
+        "patches": [],
+        "upgradePath": [
+          "org.springframework.security:spring-security-cas@3.1.7.RELEASE"
+        ]
+      },
+      {
+      },
+      {
+      }
+    ],
+    "licenses": []
+  },
+  "dependencyCount": 17,
+  "org": {
+    "name": "crda-engineering-dev",
+    "id": "63884128-5f57-4752-b9c0-9d0882873bf4"
+  },
+  "licensesPolicy": {
+    "severities": {
+      "AGPL-1.0": "high",
+      "AGPL-3.0": "high",
+      "Artistic-1.0": "medium",
+      "Artistic-2.0": "medium",
+      "CDDL-1.0": "medium",
+      "CPOL-1.02": "high",
+      "EPL-1.0": "medium",
+      "GPL-2.0": "high",
+      "GPL-3.0": "high",
+      "LGPL-2.0": "medium",
+      "LGPL-2.1": "medium",
+      "LGPL-3.0": "medium",
+      "MPL-1.1": "medium",
+      "MPL-2.0": "medium",
+      "MS-RL": "medium",
+      "SimPL-2.0": "high"
+    }
+  },
+  "packageManager": "maven"
+}
