@@ -1,0 +1,1221 @@
+{
+  "/stack-analyses": {
+    "post": {
+      "body": {},
+      "responses": {
+        "200": {
+          "title": "UserStackIdentifier",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "submitted_at": {
+              "type": "string"
+            }
+          },
+          "description": "Response structure for stack analyses post call.\n",
+          "$schema": "http://json-schema.org/draft-04/schema#"
+        },
+        "400": {},
+        "401": {}
+      }
+    }
+  },
+  "/stack-analyses/{request_id}": {
+    "get": {
+      "responses": {
+        "200": {
+          "oneOf": [
+            {
+              "title": "StackAnalysesResultForRegisteredUser",
+              "description": "Stack analyses result for registered user",
+              "type": "object",
+              "required": [
+                "analyzed_dependencies",
+                "ecosystem",
+                "license_analysis",
+                "manifest_file_path",
+                "manifest_name",
+                "recommendation",
+                "registration_status",
+                "unknown_dependencies",
+                "uuid"
+              ],
+              "properties": {
+                "uuid": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "registration_status": {
+                  "title": "RegistrationStatus",
+                  "type": "string",
+                  "enum": [
+                    "registered",
+                    "freetier"
+                  ],
+                  "default": "freetier"
+                },
+                "manifest_file_path": {
+                  "type": "string"
+                },
+                "manifest_name": {
+                  "type": "string"
+                },
+                "ecosystem": {
+                  "title": "Ecosystem",
+                  "type": "string",
+                  "enum": [
+                    "maven",
+                    "pypi",
+                    "npm"
+                  ],
+                  "description": "List of supported package ecosystems"
+                },
+                "unknown_dependencies": {
+                  "type": "array",
+                  "items": {
+                    "title": "Package",
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "version"
+                    ],
+                    "description": "Package details",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "version": {
+                        "type": "string"
+                      },
+                      "dependencies": {
+                        "type": "array"
+                      }
+                    }
+                  }
+                },
+                "license_analysis": {
+                  "title": "LicenseAnalysis",
+                  "type": "object",
+                  "required": [
+                    "outlier_packages",
+                    "conflict_packages",
+                    "current_stack_license",
+                    "unknown_licenses"
+                  ],
+                  "description": "License analyses data",
+                  "properties": {
+                    "reason": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ComponentConflict",
+                        "StackConflict",
+                        "Successful",
+                        "Unknown",
+                        "Failure"
+                      ]
+                    },
+                    "recommended_licenses": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "outlier_packages": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "conflict_packages": {
+                      "type": "array",
+                      "items": {
+                        "title": "ConflictPackages",
+                        "type": "object",
+                        "required": [
+                          "package1",
+                          "package2",
+                          "license1",
+                          "license2"
+                        ],
+                        "description": "Pair of packages which has conflict in license",
+                        "properties": {
+                          "package1": {
+                            "type": "string"
+                          },
+                          "license1": {
+                            "type": "string"
+                          },
+                          "package2": {
+                            "type": "string"
+                          },
+                          "license2": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "current_stack_license": {
+                      "type": "object"
+                    },
+                    "unknown_licenses": {
+                      "title": "UnknownLicenses",
+                      "type": "object",
+                      "description": "Licesens which are unknown to the platform.",
+                      "properties": {
+                        "component_conflict": {
+                          "type": "array",
+                          "description": "List of conflicting licenses\n",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "package": {
+                                "type": "string"
+                              },
+                              "license1": {
+                                "type": "string"
+                              },
+                              "license2": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "unknown": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "description": "List of licenses which are unknown to the platform.\n",
+                            "properties": {
+                              "package": {
+                                "type": "string"
+                              },
+                              "license": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "distinct_licenses": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "recommendation": {
+                  "title": "StackRecommendation",
+                  "type": "object",
+                  "description": "Application stack recommendations",
+                  "properties": {
+                    "companion": {
+                      "type": "array",
+                      "items": {
+                        "title": "RecommendedPackageData",
+                        "description": "Recommended packages data",
+                        "type": "object",
+                        "required": [
+                          "ecosystem",
+                          "latest_version",
+                          "name",
+                          "version"
+                        ],
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "version": {
+                            "type": "string"
+                          },
+                          "dependencies": {
+                            "type": "array"
+                          },
+                          "latest_version": {
+                            "type": "string"
+                          },
+                          "github": {
+                            "title": "GitHubDetails",
+                            "type": "object",
+                            "description": "Github details",
+                            "properties": {
+                              "watchers": {
+                                "type": "string"
+                              },
+                              "first_release_date": {
+                                "type": "string"
+                              },
+                              "total_releases": {
+                                "type": "string"
+                              },
+                              "issues": {
+                                "type": "object"
+                              },
+                              "pull_requests": {
+                                "type": "object"
+                              },
+                              "dependent_repos": {
+                                "type": "string"
+                              },
+                              "open_issues_count": {
+                                "type": "string"
+                              },
+                              "latest_release_duration": {
+                                "type": "string"
+                              },
+                              "forks_count": {
+                                "type": "string"
+                              },
+                              "contributors": {
+                                "type": "string"
+                              },
+                              "size": {
+                                "type": "string"
+                              },
+                              "stargazers_count": {
+                                "type": "string"
+                              },
+                              "used_by": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "dependent_projects": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "licenses": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "ecosystem": {
+                            "title": "Ecosystem",
+                            "type": "string",
+                            "enum": [
+                              "maven",
+                              "pypi",
+                              "npm"
+                            ],
+                            "description": "List of supported package ecosystems"
+                          },
+                          "url": {
+                            "type": "string"
+                          },
+                          "cooccurrence_probability": {
+                            "type": "number",
+                            "format": "float",
+                            "minimum": -3.402823669209385e+38,
+                            "maximum": 3.402823669209385e+38
+                          },
+                          "cooccurrence_count": {
+                            "type": "string"
+                          },
+                          "topic_list": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "manifest_file_path": {
+                      "type": "string"
+                    },
+                    "usage_outliers": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                },
+                "analyzed_dependencies": {
+                  "type": "array",
+                  "description": "All direct dependencies details regardless of it's vulnerability status\n",
+                  "items": {
+                    "title": "PackageDetailsForRegisteredUser",
+                    "type": "object",
+                    "required": [
+                      "ecosystem",
+                      "latest_version",
+                      "name",
+                      "version"
+                    ],
+                    "description": "Package details",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "version": {
+                        "type": "string"
+                      },
+                      "dependencies": {
+                        "type": "array"
+                      },
+                      "latest_version": {
+                        "type": "string"
+                      },
+                      "github": {
+                        "title": "GitHubDetails",
+                        "type": "object",
+                        "description": "Github details",
+                        "properties": {
+                          "watchers": {
+                            "type": "string"
+                          },
+                          "first_release_date": {
+                            "type": "string"
+                          },
+                          "total_releases": {
+                            "type": "string"
+                          },
+                          "issues": {
+                            "type": "object"
+                          },
+                          "pull_requests": {
+                            "type": "object"
+                          },
+                          "dependent_repos": {
+                            "type": "string"
+                          },
+                          "open_issues_count": {
+                            "type": "string"
+                          },
+                          "latest_release_duration": {
+                            "type": "string"
+                          },
+                          "forks_count": {
+                            "type": "string"
+                          },
+                          "contributors": {
+                            "type": "string"
+                          },
+                          "size": {
+                            "type": "string"
+                          },
+                          "stargazers_count": {
+                            "type": "string"
+                          },
+                          "used_by": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "dependent_projects": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "licenses": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "ecosystem": {
+                        "title": "Ecosystem",
+                        "type": "string",
+                        "enum": [
+                          "maven",
+                          "pypi",
+                          "npm"
+                        ],
+                        "description": "List of supported package ecosystems"
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "public_vulnerabilities": {
+                        "type": "array",
+                        "description": "Publicly known vulnerability details",
+                        "items": {
+                          "title": "PremiumVulnerabilityFields",
+                          "required": [
+                            "cvss",
+                            "cvss_v3",
+                            "severity",
+                            "title",
+                            "id",
+                            "url"
+                          ],
+                          "description": "Limited private vulnerability details for free tier users",
+                          "type": "object",
+                          "properties": {
+                            "cve_ids": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "cvss": {
+                              "type": "number",
+                              "format": "float",
+                              "minimum": -3.402823669209385e+38,
+                              "maximum": 3.402823669209385e+38
+                            },
+                            "cwes": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "cvss_v3": {
+                              "type": "string"
+                            },
+                            "severity": {
+                              "type": "string",
+                              "enum": [
+                                "low",
+                                "medium",
+                                "high",
+                                "critical"
+                              ]
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "url": {
+                              "type": "string"
+                            },
+                            "malicious": {
+                              "type": "boolean",
+                              "default": true
+                            },
+                            "patch_exists": {
+                              "type": "boolean",
+                              "default": false
+                            },
+                            "fixable": {
+                              "type": "boolean",
+                              "default": false
+                            },
+                            "exploit": {
+                              "type": "string",
+                              "enum": [
+                                "High",
+                                "Functional",
+                                "Proof of Concept",
+                                "Unproven",
+                                "Not Defined"
+                              ]
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "fixed_in": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "references": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "private_vulnerabilities": {
+                        "type": "array",
+                        "description": "Private vulnerability details, available only to registered\nusers\n",
+                        "items": {
+                          "title": "PremiumVulnerabilityFields",
+                          "required": [
+                            "cvss",
+                            "cvss_v3",
+                            "severity",
+                            "title",
+                            "id",
+                            "url"
+                          ],
+                          "description": "Limited private vulnerability details for free tier users",
+                          "type": "object",
+                          "properties": {
+                            "cve_ids": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "cvss": {
+                              "type": "number",
+                              "format": "float",
+                              "minimum": -3.402823669209385e+38,
+                              "maximum": 3.402823669209385e+38
+                            },
+                            "cwes": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "cvss_v3": {
+                              "type": "string"
+                            },
+                            "severity": {
+                              "type": "string",
+                              "enum": [
+                                "low",
+                                "medium",
+                                "high",
+                                "critical"
+                              ]
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "url": {
+                              "type": "string"
+                            },
+                            "malicious": {
+                              "type": "boolean",
+                              "default": true
+                            },
+                            "patch_exists": {
+                              "type": "boolean",
+                              "default": false
+                            },
+                            "fixable": {
+                              "type": "boolean",
+                              "default": false
+                            },
+                            "exploit": {
+                              "type": "string",
+                              "enum": [
+                                "High",
+                                "Functional",
+                                "Proof of Concept",
+                                "Unproven",
+                                "Not Defined"
+                              ]
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "fixed_in": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "references": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "recommended_version": {
+                        "type": "string",
+                        "description": "Recommended package version which includes fix for both public and private vulnerabilities.\n"
+                      },
+                      "vulnerable_dependencies": {
+                        "type": "array",
+                        "description": "List of dependencies which are vulnerable.\n"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "title": "StackAnalysesResultForFreeTier",
+              "description": "Stack analyses result for free tier user",
+              "type": "object",
+              "required": [
+                "analyzed_dependencies",
+                "ecosystem",
+                "license_analysis",
+                "manifest_file_path",
+                "manifest_name",
+                "recommendation",
+                "registration_link",
+                "registration_status",
+                "unknown_dependencies",
+                "uuid"
+              ],
+              "properties": {
+                "uuid": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "registration_status": {
+                  "title": "RegistrationStatus",
+                  "type": "string",
+                  "enum": [
+                    "registered",
+                    "freetier"
+                  ],
+                  "default": "freetier"
+                },
+                "manifest_file_path": {
+                  "type": "string"
+                },
+                "manifest_name": {
+                  "type": "string"
+                },
+                "ecosystem": {
+                  "title": "Ecosystem",
+                  "type": "string",
+                  "enum": [
+                    "maven",
+                    "pypi",
+                    "npm"
+                  ],
+                  "description": "List of supported package ecosystems"
+                },
+                "unknown_dependencies": {
+                  "type": "array",
+                  "items": {
+                    "title": "Package",
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "version"
+                    ],
+                    "description": "Package details",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "version": {
+                        "type": "string"
+                      },
+                      "dependencies": {
+                        "type": "array"
+                      }
+                    }
+                  }
+                },
+                "license_analysis": {
+                  "title": "LicenseAnalysis",
+                  "type": "object",
+                  "required": [
+                    "outlier_packages",
+                    "conflict_packages",
+                    "current_stack_license",
+                    "unknown_licenses"
+                  ],
+                  "description": "License analyses data",
+                  "properties": {
+                    "reason": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ComponentConflict",
+                        "StackConflict",
+                        "Successful",
+                        "Unknown",
+                        "Failure"
+                      ]
+                    },
+                    "recommended_licenses": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "outlier_packages": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "conflict_packages": {
+                      "type": "array",
+                      "items": {
+                        "title": "ConflictPackages",
+                        "type": "object",
+                        "required": [
+                          "package1",
+                          "package2",
+                          "license1",
+                          "license2"
+                        ],
+                        "description": "Pair of packages which has conflict in license",
+                        "properties": {
+                          "package1": {
+                            "type": "string"
+                          },
+                          "license1": {
+                            "type": "string"
+                          },
+                          "package2": {
+                            "type": "string"
+                          },
+                          "license2": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "current_stack_license": {
+                      "type": "object"
+                    },
+                    "unknown_licenses": {
+                      "title": "UnknownLicenses",
+                      "type": "object",
+                      "description": "Licesens which are unknown to the platform.",
+                      "properties": {
+                        "component_conflict": {
+                          "type": "array",
+                          "description": "List of conflicting licenses\n",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "package": {
+                                "type": "string"
+                              },
+                              "license1": {
+                                "type": "string"
+                              },
+                              "license2": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "unknown": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "description": "List of licenses which are unknown to the platform.\n",
+                            "properties": {
+                              "package": {
+                                "type": "string"
+                              },
+                              "license": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "distinct_licenses": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "recommendation": {
+                  "title": "StackRecommendation",
+                  "type": "object",
+                  "description": "Application stack recommendations",
+                  "properties": {
+                    "companion": {
+                      "type": "array",
+                      "items": {
+                        "title": "RecommendedPackageData",
+                        "description": "Recommended packages data",
+                        "type": "object",
+                        "required": [
+                          "ecosystem",
+                          "latest_version",
+                          "name",
+                          "version"
+                        ],
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "version": {
+                            "type": "string"
+                          },
+                          "dependencies": {
+                            "type": "array"
+                          },
+                          "latest_version": {
+                            "type": "string"
+                          },
+                          "github": {
+                            "title": "GitHubDetails",
+                            "type": "object",
+                            "description": "Github details",
+                            "properties": {
+                              "watchers": {
+                                "type": "string"
+                              },
+                              "first_release_date": {
+                                "type": "string"
+                              },
+                              "total_releases": {
+                                "type": "string"
+                              },
+                              "issues": {
+                                "type": "object"
+                              },
+                              "pull_requests": {
+                                "type": "object"
+                              },
+                              "dependent_repos": {
+                                "type": "string"
+                              },
+                              "open_issues_count": {
+                                "type": "string"
+                              },
+                              "latest_release_duration": {
+                                "type": "string"
+                              },
+                              "forks_count": {
+                                "type": "string"
+                              },
+                              "contributors": {
+                                "type": "string"
+                              },
+                              "size": {
+                                "type": "string"
+                              },
+                              "stargazers_count": {
+                                "type": "string"
+                              },
+                              "used_by": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "dependent_projects": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "licenses": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "ecosystem": {
+                            "title": "Ecosystem",
+                            "type": "string",
+                            "enum": [
+                              "maven",
+                              "pypi",
+                              "npm"
+                            ],
+                            "description": "List of supported package ecosystems"
+                          },
+                          "url": {
+                            "type": "string"
+                          },
+                          "cooccurrence_probability": {
+                            "type": "number",
+                            "format": "float",
+                            "minimum": -3.402823669209385e+38,
+                            "maximum": 3.402823669209385e+38
+                          },
+                          "cooccurrence_count": {
+                            "type": "string"
+                          },
+                          "topic_list": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "manifest_file_path": {
+                      "type": "string"
+                    },
+                    "usage_outliers": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                },
+                "registration_link": {
+                  "type": "string"
+                },
+                "analyzed_dependencies": {
+                  "type": "array",
+                  "description": "All direct dependencies details regardless of it's vulnerability status\n",
+                  "items": {
+                    "title": "PackageDetailsForFreeTier",
+                    "type": "object",
+                    "required": [
+                      "ecosystem",
+                      "latest_version",
+                      "name",
+                      "version"
+                    ],
+                    "description": "Package details",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "version": {
+                        "type": "string"
+                      },
+                      "dependencies": {
+                        "type": "array"
+                      },
+                      "latest_version": {
+                        "type": "string"
+                      },
+                      "github": {
+                        "title": "GitHubDetails",
+                        "type": "object",
+                        "description": "Github details",
+                        "properties": {
+                          "watchers": {
+                            "type": "string"
+                          },
+                          "first_release_date": {
+                            "type": "string"
+                          },
+                          "total_releases": {
+                            "type": "string"
+                          },
+                          "issues": {
+                            "type": "object"
+                          },
+                          "pull_requests": {
+                            "type": "object"
+                          },
+                          "dependent_repos": {
+                            "type": "string"
+                          },
+                          "open_issues_count": {
+                            "type": "string"
+                          },
+                          "latest_release_duration": {
+                            "type": "string"
+                          },
+                          "forks_count": {
+                            "type": "string"
+                          },
+                          "contributors": {
+                            "type": "string"
+                          },
+                          "size": {
+                            "type": "string"
+                          },
+                          "stargazers_count": {
+                            "type": "string"
+                          },
+                          "used_by": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "dependent_projects": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "licenses": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "ecosystem": {
+                        "title": "Ecosystem",
+                        "type": "string",
+                        "enum": [
+                          "maven",
+                          "pypi",
+                          "npm"
+                        ],
+                        "description": "List of supported package ecosystems"
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "public_vulnerabilities": {
+                        "type": "array",
+                        "description": "Publicly known vulnerability details",
+                        "items": {
+                          "title": "BasicVulnerabilityFields",
+                          "required": [
+                            "cvss",
+                            "cvss_v3",
+                            "severity",
+                            "title",
+                            "id",
+                            "url"
+                          ],
+                          "description": "Limited private vulnerability details for free tier users",
+                          "properties": {
+                            "cve_ids": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "cvss": {
+                              "type": "number",
+                              "format": "float",
+                              "minimum": -3.402823669209385e+38,
+                              "maximum": 3.402823669209385e+38
+                            },
+                            "cwes": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "cvss_v3": {
+                              "type": "string"
+                            },
+                            "severity": {
+                              "type": "string",
+                              "enum": [
+                                "low",
+                                "medium",
+                                "high",
+                                "critical"
+                              ]
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "url": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "private_vulnerabilities": {
+                        "type": "array",
+                        "description": "Private vulnerability details with limited info",
+                        "items": {
+                          "title": "BasicVulnerabilityFields",
+                          "required": [
+                            "cvss",
+                            "cvss_v3",
+                            "severity",
+                            "title",
+                            "id",
+                            "url"
+                          ],
+                          "description": "Limited private vulnerability details for free tier users",
+                          "properties": {
+                            "cve_ids": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "cvss": {
+                              "type": "number",
+                              "format": "float",
+                              "minimum": -3.402823669209385e+38,
+                              "maximum": 3.402823669209385e+38
+                            },
+                            "cwes": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "cvss_v3": {
+                              "type": "string"
+                            },
+                            "severity": {
+                              "type": "string",
+                              "enum": [
+                                "low",
+                                "medium",
+                                "high",
+                                "critical"
+                              ]
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "url": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "recommended_version": {
+                        "type": "string",
+                        "description": "Recommended package version which includes fix for public vulnerabilities.\n"
+                      },
+                      "vulnerable_dependencies": {
+                        "type": "array",
+                        "description": "List of dependencies which are vulnerable.\n"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "$schema": "http://json-schema.org/draft-04/schema#"
+        },
+        "202": {
+          "type": "object",
+          "properties": {
+            "error": {
+              "type": "string"
+            }
+          },
+          "$schema": "http://json-schema.org/draft-04/schema#"
+        },
+        "401": {},
+        "404": {},
+        "408": {}
+      }
+    }
+  }
+}

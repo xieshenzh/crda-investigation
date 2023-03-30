@@ -1,0 +1,76 @@
+{
+  "credits": [
+    "David Ohsie"
+  ],
+  "cve_ids": [
+    "CVE-2014-3527"
+  ],
+  "cvss_details": [
+    {
+      "assigner": "NVD",
+      "cvss_v3_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "cvss_v3_base_score": 9.8,
+      "severity": "critical",
+      "modified": "2022-01-03T17:36:56.229472Z"
+    }
+  ],
+  "cvss_v3_base_score": 9.8,
+  "cvss_v3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+  "cwe_ids": [
+    "CWE-284"
+  ],
+  "description": "## Overview\r\n[`org.springframework.security:spring-security-cas`](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22spring-security-cas%22)\r\nWhen using Spring Security's CAS Proxy ticket authentication, a malicious CAS Service could trick another CAS Service into authenticating a proxy ticket that was not associated. A remote attacker could use this flaw to bypass any access control restrictions on which CAS services can authenticate to one another.\r\n\r\n## References\r\n\r\n- [Pivotal Security](http://www.gopivotal.com/security/cve-2014-3527)\r\n- [Redhat Bugzilla](https://bugzilla.redhat.com/CVE-2014-3527)\r\n- [Spring Blog](https://spring.io/blog/2014/08/15/cve-2014-3527-fixed-in-spring-security-3-2-5-and-3-1-7)\r\n- [Jira Issue](https://jira.spring.io/browse/SEC-2688)",
+  "description_overview": "## Overview\r\n[`org.springframework.security:spring-security-cas`](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22spring-security-cas%22)\r\nWhen using Spring Security's CAS Proxy ticket authentication, a malicious CAS Service could trick another CAS Service into authenticating a proxy ticket that was not associated. A remote attacker could use this flaw to bypass any access control restrictions on which CAS services can authenticate to one another.\r\n\r\n## References\r\n\r\n- [Pivotal Security](http://www.gopivotal.com/security/cve-2014-3527)\r\n- [Redhat Bugzilla](https://bugzilla.redhat.com/CVE-2014-3527)\r\n- [Spring Blog](https://spring.io/blog/2014/08/15/cve-2014-3527-fixed-in-spring-security-3-2-5-and-3-1-7)\r\n- [Jira Issue](https://jira.spring.io/browse/SEC-2688)",
+  "description_remediation": "## Overview\r\n[`org.springframework.security:spring-security-cas`](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22spring-security-cas%22)\r\nWhen using Spring Security's CAS Proxy ticket authentication, a malicious CAS Service could trick another CAS Service into authenticating a proxy ticket that was not associated. A remote attacker could use this flaw to bypass any access control restrictions on which CAS services can authenticate to one another.\r\n\r\n## References\r\n\r\n- [Pivotal Security](http://www.gopivotal.com/security/cve-2014-3527)\r\n- [Redhat Bugzilla](https://bugzilla.redhat.com/CVE-2014-3527)\r\n- [Spring Blog](https://spring.io/blog/2014/08/15/cve-2014-3527-fixed-in-spring-security-3-2-5-and-3-1-7)\r\n- [Jira Issue](https://jira.spring.io/browse/SEC-2688)",
+  "disclosed": "2016-12-25T16:51:52Z",
+  "ecosystem": "java",
+  "exploit_code_maturity": "Not Defined",
+  "initially_fixed_in_versions": [
+    "3.2.5.RELEASE",
+    "3.1.7.RELEASE"
+  ],
+  "is_fixable": true,
+  "is_malicious": false,
+  "is_social_media_trending": false,
+  "modified": "2021-05-02T13:23:00.440029Z",
+  "package": "org.springframework.security:spring-security-cas",
+  "package_repository_url": "https://repo1.maven.org/maven2/",
+  "published": "2016-12-25T16:51:52Z",
+  "references": [
+    {
+      "title": "GitHub Commit",
+      "url": "https://github.com/spring-projects/spring-security/commit/2cb99f079152ac05cee5c90457c7feb3bb2de55"
+    },
+    {
+      "title": "GitHub Commit",
+      "url": "https://github.com/spring-projects/spring-security/commit/934937d9c1dc20c396b96c08310b72cfa627acb"
+    },
+    {
+      "title": "Jira Issue",
+      "url": "https://jira.spring.io/browse/SEC-2688"
+    },
+    {
+      "title": "Pivotal Security",
+      "url": "http://www.gopivotal.com/security/cve-2014-3527"
+    },
+    {
+      "title": "Redhat Bugzilla",
+      "url": "https://bugzilla.redhat.com/CVE-2014-3527"
+    },
+    {
+      "title": "Spring Blog",
+      "url": "https://spring.io/blog/2014/08/15/cve-2014-3527-fixed-in-spring-security-3-2-5-and-3-1-7"
+    }
+  ],
+  "severity": "critical",
+  "snyk_advisory_url": "https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORKSECURITY-30173",
+  "snyk_id": "SNYK-JAVA-ORGSPRINGFRAMEWORKSECURITY-30173",
+  "title": "Access Restriction Bypass",
+  "vulnerable_functions": [],
+  "vulnerable_hash_ranges": [],
+  "vulnerable_hashes": [],
+  "vulnerable_versions": [
+    "[3.2.0,3.2.5.RELEASE)",
+    "[3.1.0,3.1.7.RELEASE)"
+  ]
+}

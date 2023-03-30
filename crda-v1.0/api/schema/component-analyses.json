@@ -1,0 +1,644 @@
+{
+  "/component-analyses/": {
+    "post": {
+      "body": {
+        "title": "CA Batch Call Request Body",
+        "type": "object",
+        "properties": {
+          "ecosystem": {
+            "type": "string",
+            "enum": [
+              "maven",
+              "pypi",
+              "npm"
+            ]
+          },
+          "package_versions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "package": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "$schema": "http://json-schema.org/draft-04/schema#"
+      },
+      "responses": {
+        "200": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "title": "Vendor Public Recommendation",
+                "type": "object",
+                "properties": {
+                  "package": {
+                    "type": "string"
+                  },
+                  "package_unknown": {
+                    "type": "boolean"
+                  },
+                  "version": {
+                    "type": "string"
+                  },
+                  "recommended_versions": {
+                    "type": "string"
+                  },
+                  "vulnerability": {
+                    "type": "array",
+                    "items": {
+                      "title": "Vulnerability Details Batch",
+                      "description": "Information of the vulnerability found",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "cvss": {
+                          "type": "string"
+                        },
+                        "is_private": {
+                          "type": "boolean"
+                        },
+                        "cwes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "cvss_v3": {
+                          "type": "string"
+                        },
+                        "severity": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string"
+                        },
+                        "cve_ids": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "fixed_in": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "highest_severity": {
+                    "type": "string"
+                  },
+                  "known_security_vulnerability_count": {
+                    "type": "integer"
+                  },
+                  "security_advisory_count": {
+                    "type": "integer"
+                  },
+                  "registration_link": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "title": "Vendor Private Recommendation",
+                "type": "object",
+                "properties": {
+                  "package_unknown": {
+                    "type": "boolean"
+                  },
+                  "package": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  },
+                  "recommended_versions": {
+                    "type": "string"
+                  },
+                  "vulnerability": {
+                    "type": "array",
+                    "items": {
+                      "title": "Vulnerability Details Batch",
+                      "description": "Information of the vulnerability found",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "cvss": {
+                          "type": "string"
+                        },
+                        "is_private": {
+                          "type": "boolean"
+                        },
+                        "cwes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "cvss_v3": {
+                          "type": "string"
+                        },
+                        "severity": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string"
+                        },
+                        "cve_ids": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "fixed_in": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "highest_severity": {
+                    "type": "string"
+                  },
+                  "known_security_vulnerability_count": {
+                    "type": "integer"
+                  },
+                  "security_advisory_count": {
+                    "type": "integer"
+                  },
+                  "exploitable_vulnerabilities_count": {
+                    "type": "integer"
+                  },
+                  "vendor_package_link": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "title": "No Vulnerability Response",
+                "type": "object",
+                "properties": {
+                  "package": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  },
+                  "recommendation": {
+                    "type": "object"
+                  }
+                }
+              }
+            ]
+          },
+          "$schema": "http://json-schema.org/draft-04/schema#"
+        },
+        "202": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "title": "All Unknown Packages Response",
+                "description": "Information of the vulnerability found",
+                "type": "object",
+                "properties": {
+                  "package": {
+                    "type": "string"
+                  },
+                  "package_unknown": {
+                    "type": "boolean"
+                  },
+                  "version": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "title": "Vendor Private Recommendation",
+                "type": "object",
+                "properties": {
+                  "package_unknown": {
+                    "type": "boolean"
+                  },
+                  "package": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  },
+                  "recommended_versions": {
+                    "type": "string"
+                  },
+                  "vulnerability": {
+                    "type": "array",
+                    "items": {
+                      "title": "Vulnerability Details Batch",
+                      "description": "Information of the vulnerability found",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "cvss": {
+                          "type": "string"
+                        },
+                        "is_private": {
+                          "type": "boolean"
+                        },
+                        "cwes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "cvss_v3": {
+                          "type": "string"
+                        },
+                        "severity": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string"
+                        },
+                        "cve_ids": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "fixed_in": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "highest_severity": {
+                    "type": "string"
+                  },
+                  "known_security_vulnerability_count": {
+                    "type": "integer"
+                  },
+                  "security_advisory_count": {
+                    "type": "integer"
+                  },
+                  "exploitable_vulnerabilities_count": {
+                    "type": "integer"
+                  },
+                  "vendor_package_link": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "title": "Vendor Public Recommendation",
+                "type": "object",
+                "properties": {
+                  "package": {
+                    "type": "string"
+                  },
+                  "package_unknown": {
+                    "type": "boolean"
+                  },
+                  "version": {
+                    "type": "string"
+                  },
+                  "recommended_versions": {
+                    "type": "string"
+                  },
+                  "vulnerability": {
+                    "type": "array",
+                    "items": {
+                      "title": "Vulnerability Details Batch",
+                      "description": "Information of the vulnerability found",
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "cvss": {
+                          "type": "string"
+                        },
+                        "is_private": {
+                          "type": "boolean"
+                        },
+                        "cwes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "cvss_v3": {
+                          "type": "string"
+                        },
+                        "severity": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string"
+                        },
+                        "cve_ids": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "fixed_in": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "highest_severity": {
+                    "type": "string"
+                  },
+                  "known_security_vulnerability_count": {
+                    "type": "integer"
+                  },
+                  "security_advisory_count": {
+                    "type": "integer"
+                  },
+                  "registration_link": {
+                    "type": "string"
+                  }
+                }
+              }
+            ]
+          },
+          "$schema": "http://json-schema.org/draft-04/schema#"
+        },
+        "401": {},
+        "404": {}
+      }
+    }
+  },
+  "/component-analyses/{eco}/{name}/{ver}": {
+    "get": {
+      "responses": {
+        "200": {
+          "items": {
+            "oneOf": [
+              {
+                "title": "Vendor Private Recommendation",
+                "type": "object",
+                "properties": {
+                  "package": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  },
+                  "recommendation": {
+                    "type": "object",
+                    "properties": {
+                      "recommended_version": {
+                        "type": "string"
+                      },
+                      "component_analyses": {
+                        "title": "Vulnerability Details",
+                        "description": "Information of the vulnerability found",
+                        "type": "object",
+                        "properties": {
+                          "vulnerability": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "vendor_cve_ids": {
+                                  "type": "string"
+                                },
+                                "cvss": {
+                                  "type": "string"
+                                },
+                                "is_private": {
+                                  "type": "boolean"
+                                },
+                                "cve_ids": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "cwes": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "cvss_v3": {
+                                  "type": "string"
+                                },
+                                "severity": {
+                                  "type": "string",
+                                  "enum": [
+                                    "low",
+                                    "medium",
+                                    "high",
+                                    "critical"
+                                  ]
+                                },
+                                "title": {
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "type": "string"
+                                },
+                                "fixed_in": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "message": {
+                        "type": "string"
+                      },
+                      "severity": {
+                        "type": "string"
+                      },
+                      "known_security_vulnerability_count": {
+                        "type": "integer"
+                      },
+                      "security_advisory_count": {
+                        "type": "integer"
+                      },
+                      "exploitable_vulnerabilities_count": {
+                        "type": "integer"
+                      },
+                      "vendor_package_link": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "title": "Vendor Public Recommendation",
+                "type": "object",
+                "properties": {
+                  "package": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  },
+                  "recommendation": {
+                    "type": "object",
+                    "properties": {
+                      "recommended_version": {
+                        "type": "string"
+                      },
+                      "component_analyses": {
+                        "title": "Vulnerability Details",
+                        "description": "Information of the vulnerability found",
+                        "type": "object",
+                        "properties": {
+                          "vulnerability": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "vendor_cve_ids": {
+                                  "type": "string"
+                                },
+                                "cvss": {
+                                  "type": "string"
+                                },
+                                "is_private": {
+                                  "type": "boolean"
+                                },
+                                "cve_ids": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "cwes": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "cvss_v3": {
+                                  "type": "string"
+                                },
+                                "severity": {
+                                  "type": "string",
+                                  "enum": [
+                                    "low",
+                                    "medium",
+                                    "high",
+                                    "critical"
+                                  ]
+                                },
+                                "title": {
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "type": "string"
+                                },
+                                "fixed_in": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "message": {
+                        "type": "string"
+                      },
+                      "highest_severity": {
+                        "type": "string"
+                      },
+                      "known_security_vulnerability_count": {
+                        "type": "integer"
+                      },
+                      "security_advisory_count": {
+                        "type": "integer"
+                      },
+                      "registration_link": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "title": "No Vulnerability Response",
+                "type": "object",
+                "properties": {
+                  "package": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  },
+                  "recommendation": {
+                    "type": "object"
+                  }
+                }
+              }
+            ]
+          },
+          "$schema": "http://json-schema.org/draft-04/schema#"
+        },
+        "202": {},
+        "401": {},
+        "404": {}
+      }
+    }
+  }
+}
