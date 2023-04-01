@@ -1,0 +1,9 @@
+{
+  "affected": "affected versions",
+  "vulnerabilities": "vulnerabilties from synk database",
+  "all_ver": "all versions from maven central",
+  "latest_version": "latest version from maven central",
+  "ecosystem": "maven",
+  "package": "package name",
+  "_src_": "https://github.com/fabric8-analytics/graph-cve-sync/blob/0ccd4da4d26fc2d561663c1575a826279626257d/graph_snyk_cve_sync.py#L202-L209"
+}
